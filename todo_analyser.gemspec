@@ -10,15 +10,15 @@ Gem::Specification.new do |spec|
 
   spec.summary = 'To-Do List Parser to parse the TODOs status from list'
   spec.description = 'To-Do List Parser to parse the TODOs for even numbered items from list'
-  spec.homepage = 'https://www.sureshinde.com'
+  spec.homepage = 'https://github.com/sureshinde/todo_analyser'
   spec.license = 'MIT'
   spec.required_ruby_version = '>= 3.0.0'
 
-  spec.metadata['allowed_push_host'] = 'https://www.sureshinde.com'
+  spec.metadata['allowed_push_host'] = 'http://rubygems.org'
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'https://github.com/sureshinde/todo_analyser.git'
-  spec.metadata['changelog_uri'] = 'https://www.sureshinde.com'
+  spec.metadata['changelog_uri'] = 'https://github.com/sureshinde/todo_analyser/blob/master/CHANGELOG.md'
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
   end
   spec.bindir = 'exe'
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
   # Uncomment to register a new dependency of your gem
