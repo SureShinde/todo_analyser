@@ -22,22 +22,38 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ## Usage
 
 ### Option 1: Console Command
-
     $ bin/console -h # To display information about command arguments
     $ bin/console <URL> [OPTIONS]
     $ OPTIONS: -n, --number N [Number of TODOs to consume (default: 20)]
 
-### Option 2: Standalone Command
+### Option 2: Bundle Command
+    $ bundle exec todo_analyser -h # To display information about command arguments
+    $ bundle exec todo_analyser <URL> [OPTIONS]
+
+### Option 3: Standalone Command
     $ run/todo_analyser.rb -h # To display information about command arguments
     $ run/todo_analyser.rb <URL> [OPTIONS]
 
-### Example: Option 1
+### Option 4: Docker Command
+    $ docker build -t todo_analyser .
+    $ docker run todo_analyser -h # To display information about command arguments
+    $ docker run todo_analyser <URL> [OPTIONS]
+
+### Example: Console Command
     $ bin/console https://jsonplaceholder.typicode.com/todos
     $ bin/console -n 10 https://jsonplaceholder.typicode.com/todos
 
-### Example: Option 2
+### Example: Bundle Command
+    $ bundle exec todo_analyser https://jsonplaceholder.typicode.com/todos
+    $ bundle exec todo_analyser -n 10 https://jsonplaceholder.typicode.com/todos
+
+### Example: Standalone Command
     $ run/todo_analyser.rb https://jsonplaceholder.typicode.com/todos
     $ run/todo_analyser.rb -n 10 https://jsonplaceholder.typicode.com/todos
+
+### Example: Docker Command
+    $ docker run todo_analyser https://jsonplaceholder.typicode.com/todos
+    $ docker run todo_analyser -n 10 https://jsonplaceholder.typicode.com/todos
 
 
 ## Contributing
