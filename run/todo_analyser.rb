@@ -8,7 +8,7 @@ require 'net/http'
 ##
 # Module to Run the Parser & Analyser
 ##
-module TodoAnalyser
+module StandAloneTodoAnalyser
   # Interface for reading the response
   module TodoReaderInterface
     def read
@@ -77,24 +77,34 @@ module TodoAnalyser
     end
   end
 
-  # Command-line argument parsing
-  options = {}
-  OptionParser.new do |opts|
-    opts.banner = 'Usage: todo_analyser.rb URL [OPTIONS]'
+  def self.configure
+    # Command-line argument parsing
+    options = {}
+    OptionParser.new do |opts|
+      opts.banner = 'Usage: todo_analyser.rb URL [OPTIONS]'
 
-    opts.on('-n', '--number N', 'Number of TODOs to consume (default: 20)') do |n|
-      options[:number] = n.to_i
-    end
-  end.parse!
+      opts.on('-n', '--number N', 'Number of TODOs to consume (default: 20)') do |n|
+        options[:number] = n.to_i
+      end
+    end.parse!
 
-  todos_path = ARGV[0]
-  raise 'Please specify a file to consume TODOs from.' unless todos_path
+    [ARGV[0], options[:number] || 20]
+  end
 
-  # Default Values
-  number = options[:number] || 20
+  def self.analyse(todos_path, number)
+    # Calls
+    reader = TodoReaderJSON.new(todos_path)
+    consumer = TodoConsumer.new(reader, number, ConsoleOutput.new)
+    consumer.consume
+  end
 
-  # Calls
-  reader = TodoReaderJSON.new(todos_path)
-  consumer = TodoConsumer.new(reader, number, ConsoleOutput.new)
-  consumer.consume
+  def self.run
+    todos_path, number = configure
+
+    raise 'Please specify a file to consume TODOs from.' unless todos_path
+
+    analyse(todos_path, number)
+  end
+
+  run
 end

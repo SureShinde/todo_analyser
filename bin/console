@@ -9,3 +9,5 @@ require 'todo_analyser'
 
 # require "irb"
 # IRB.start(__FILE__)
+
+TodoAnalyser.run
