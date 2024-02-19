@@ -7,6 +7,9 @@ require_relative 'todo_analyser/console_output'
 require_relative 'todo_analyser/todo_reader_json'
 require_relative 'todo_analyser/todo_consumer'
 
+##
+# Module to Run the Parser & Analyser
+##
 module TodoAnalyser
   class Error < StandardError; end
 

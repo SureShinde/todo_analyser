@@ -5,8 +5,10 @@ require 'optparse'
 require 'json'
 require 'net/http'
 
+##
+# Module to Run the Parser & Analyser
+##
 module TodoAnalyser
-
   # Interface for reading the response
   module TodoReaderInterface
     def read
